@@ -28,7 +28,7 @@ DEBUG = True
 
 
 # This is for VERCEL
-ALLOWED_HOSTS = ['.vercel.app']
+ALLOWED_HOSTS = ['.onrender.com','127.0.0.1','localhost']
 
 #THIS IS FOR EVERYTHING ELSE
 #ALLOWED_HOSTS = ['*']
