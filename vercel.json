@@ -1,0 +1,19 @@
+{
+    "builds": [
+      {
+        "src": "classifying_malicious_links/wsgi.py",
+        "use": "@vercel/python",
+        "config": {
+          "maxLambdaSize": 15000000,
+          "runtime": "python3.9"
+        }
+      }
+    ],
+    "routes": [
+      {
+        "src": "/(.*)",
+        "dest": "classifying_malicious_links/wsgi.py"
+      }
+    ]
+  }
+  

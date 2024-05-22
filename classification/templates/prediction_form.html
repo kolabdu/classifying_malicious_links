@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>URL Category Prediction</title>
+</head>
+<body>
+  <h1>URL Category Predictor</h1>
+  <p>This app predicts the category of a given URL.</p>
+  <form method="post">
+    {% csrf_token %}
+    <label for="url_input">Enter a URL:</label>
+    <input type="text" id="url_input" name="url_input" value="{{ url_input }}">
+    <br>
+    <button type="submit">Predict</button>
+  </form>
+  {% if prediction %}
+    <p>Predicted category: {{ prediction }}</p>
+  {% endif %}
+</body>
+</html>
