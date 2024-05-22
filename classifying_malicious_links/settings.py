@@ -28,10 +28,10 @@ DEBUG = True
 
 
 # This is for VERCEL
-#ALLOWED_HOSTS = ['.vercel.app']
+ALLOWED_HOSTS = ['.vercel.app']
 
 #THIS IS FOR EVERYTHING ELSE
-ALLOWED_HOSTS = ['*']
+#ALLOWED_HOSTS = ['*']
 
 
 # Application definition
