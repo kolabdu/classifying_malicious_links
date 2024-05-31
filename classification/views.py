@@ -27,19 +27,39 @@ def predict_category(request):
     if request.method == 'POST':
         user_input = request.POST.get('url_input')
         cleaned_input = [clean_url(user_input)]
+
+        # Using Custom Tokenizer
+        model, vectorizer = load_model_and_vectorizer()
+        print("Form submitted. Input URL:", cleaned_input)  # Add print statement
+        try:
+            prediction = predict_url_category(cleaned_input, model, vectorizer)
+            print("Predicted category:", prediction)  # Add print statement
+        except Exception as e:
+            print(f"Error during prediction: {e}")
+            prediction = None
+
+        return render(request, 'index.html', {'prediction': prediction})
+
+    # If the request method is not POST (e.g., GET), render the index page
+    return render(request, 'index.html')
+
+# def predict_category(request):
+#     if request.method == 'POST':
+#         user_input = request.POST.get('url_input')
+#         cleaned_input = [clean_url(user_input)]
         
 
-    # Using Custom Tokenizer
+#     # Using Custom Tokenizer
         
-        model,vectorizer = load_model_and_vectorizer()
-        print("Form submitted. Input URL:", cleaned_input)  # Add print statement
-        prediction = predict_url_category(cleaned_input, model,vectorizer)
-        print("Predicted category:", prediction)  # Add print statement
-        ##########
-        #return render(request, 'result.html', {'prediction': prediction})
-        return render(request, 'index.html', {'prediction': prediction})
-    #If the request method is not POST (e.g., GET), render the index page
-    return render(request, 'index.html')
+#         model,vectorizer = load_model_and_vectorizer()
+#         print("Form submitted. Input URL:", cleaned_input)  # Add print statement
+#         prediction = predict_url_category(cleaned_input, model,vectorizer)
+#         print("Predicted category:", prediction)  # Add print statement
+#         ##########
+#         #return render(request, 'result.html', {'prediction': prediction})
+#         return render(request, 'index.html', {'prediction': prediction})
+#     #If the request method is not POST (e.g., GET), render the index page
+#     return render(request, 'index.html')
 
 
 
