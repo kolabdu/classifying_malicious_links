@@ -23,22 +23,42 @@ def makeTokens(url):
 def index(request):
     return render(request, 'index.html')
 
+# def predict_category(request):
+#     if request.method == 'POST':
+#         user_input = request.POST.get('url_input')
+#         cleaned_input = [clean_url(user_input)]
+
+#         # Using Custom Tokenizer
+#         model, vectorizer = load_model_and_vectorizer()
+#         #print("Form submitted. Input URL:", cleaned_input)  # Add print statement
+#         try:
+#             prediction = predict_url_category(cleaned_input, model, vectorizer)
+#             #print("Predicted category:", prediction)  # Add print statement
+#         except Exception as e:
+#             #print(f"Error during prediction: {e}")
+#             prediction = None
+
+#         return render(request, 'index.html', {'prediction': prediction})
+
+#     # If the request method is not POST (e.g., GET), render the index page
+#     return render(request, 'index.html')
+
+
 def predict_category(request):
+    prediction = None  # Initialize the variable at the start
+
     if request.method == 'POST':
         user_input = request.POST.get('url_input')
         cleaned_input = [clean_url(user_input)]
 
         # Using Custom Tokenizer
         model, vectorizer = load_model_and_vectorizer()
-        #print("Form submitted. Input URL:", cleaned_input)  # Add print statement
+        # print("Form submitted. Input URL:", cleaned_input)  # Add print statement
         try:
             prediction = predict_url_category(cleaned_input, model, vectorizer)
-            #print("Predicted category:", prediction)  # Add print statement
+            # print("Predicted category:", prediction)  # Add print statement
         except Exception as e:
-            #print(f"Error during prediction: {e}")
+            # print(f"Error during prediction: {e}")
             prediction = None
 
-        return render(request, 'index.html', {'prediction': prediction})
-
-    # If the request method is not POST (e.g., GET), render the index page
-    return render(request, 'index.html')
+    return render(request, 'index.html', {'prediction': prediction})
